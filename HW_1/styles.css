@@ -7,6 +7,17 @@ header {
     height: 50px;
 }
 
+footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 60px;
+    padding: 16px;
+    border-radius: 10px;
+}
+
 .header-left {
     flex: 1;
     display: flex;
@@ -21,7 +32,7 @@ header {
 }
 .header-left > a:hover{
     text-decoration: none;
-    color: darkgray;
+    opacity: 0.5;  /* Slightly reduce opacity on hover */
 }
 .header-icon {
     display: flex;
@@ -29,46 +40,32 @@ header {
     height: 50px;
     align-items: center;
 }
-
-
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    height: 60px;
-    padding: 16px;
-    border-radius: 10px;
-}
-
-
 .flex-container {
-    min-height: 400px;
     display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: center;
+    flex-direction: row; /* Aligns items in a row */
+    gap: 20px; /* Space between the columns */
     padding-top: 10px;
     padding-bottom: 10px;
-}
-
-.left-column, .right-column, .posts-column {
-    flex: 1;
-    background-color: gray;
-    border-radius: 10px;
     width: 100%;
+    justify-content: space-between; /* Optional: Makes sure the columns fill up space */
+}
+.left-column, .right-column {
+    flex: 1; /* Allows these columns to take up equal space */
+    background-color: gray;
+    border-radius: 16px;
+    height: auto; /* Allow the height to adjust based on content */
 }
 
 .posts-column {
-    flex: 3;
+    flex: 3; /* Takes up 3 times the space of the left/right columns */
     display: flex;
     flex-direction: column;
     gap: 20px;
     background-color: transparent;
 }
 
+
 .post {
-    width: auto;
     display: flex;
     flex-direction: column;    
     background-color: lightgray;
@@ -87,7 +84,7 @@ footer {
 .post-image {
     max-height: 300px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 4px;
     align-self: center;
 }
 .post-like {
@@ -102,8 +99,7 @@ footer {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    min-width: 320px;
     margin: auto;
 }
 .login-box {
@@ -169,52 +165,12 @@ button:hover {
     text-decoration: underline;
 }
 
-@media (min-width: 768px) { /* Changed max-width to min-width so that it would scale better with larger screens */
-    .flex-container {
-        flex-direction: column; 
-        align-items: center;
-        gap: 10px;
-    
-    }
-
-    .left-column, .right-column {
-        min-height: 48px;
-    }    
-    .post-image {
-        max-height: 200px;
-    }
-}
-@media (min-width:300px) and (max-width: 768px) {
-    header {
-        flex-direction: row;  /* Row layout for mobile phones */
-        justify-content: space-between;
-        height: 60px;
-    }
-
-    /* Adjust icon size slightly smaller than large screens */
-    .header-icon {
-        width: 40px;
-        height: 40px;
-    }
-
-    /* Adjust font size for tablet */
-    .header-left a {
-        font-size: 18px;
-    }
-
-    /* Add more space between header items */
-    .header-left, .header-right {
-        gap: 10px;
-    }
-}
-
 /* Container for the Add Post page */
 .post-container {
     background-color: #ddd;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
     max-width: 400px;
     margin: auto;
     display: flex;
@@ -242,21 +198,19 @@ button:hover {
 
 textarea {
     resize: none;  /* Prevent resizing */
-    width: calc(100% - 110px);   /* Adjust the width to align with label */
+    width: 93%;   /* Adjust the width to align with label */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    margin-bottom: 10px; /* Add space below textarea */
 }
 
 input[type="file"] {
     background-color: transparent;
     font-size: 16px;
-    padding: 5px 10px;
     border: none; 
     cursor: pointer; /* Make it look like a button */
-    width: calc(100% - 110px); /* Align input with textarea */
+    width: 100%; /* Align input with textarea */
 }
 
 /* Center the submit button */
@@ -275,28 +229,8 @@ input[type="file"] {
     background-color: #005999;
 }
 
-/* Make sure footer is pinned to the bottom of the page */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-footer {
-    margin-top: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: lightgray;
-    height: 60px;
-    padding: 16px;
-    border-radius: 10px;
-    width: 100%;
-}
-
 .header-right a img:hover {
-    opacity: 0.8;  /* Slightly reduce opacity on hover */
+    opacity: 0.5;  /* Slightly reduce opacity on hover */
     cursor: pointer;  /* Show the pointer cursor when hovering over the icon */
 }
 
@@ -305,23 +239,6 @@ footer {
     color: white;
     border-radius: 5px;
     cursor: pointer;
-}
-
-/* Pseudo-class */
-.header-left > a:hover {
-    background-color: #0077cc;
-    color: white;
-}
-
-/* Descendant Selector: a tag inside header-left */
-.header-left a {
-    text-decoration: none;
-    color: black;
-}
-
-/* Child Selector */
-.header-left > a {
-    margin-right: 10px;
 }
 
 /* Adjacent Sibling Selector */
@@ -334,24 +251,31 @@ label ~ textarea {
     border-color: blue; /* Change textarea border if label is a sibling */
 }
 
-/* Flexbox for responsive layout */
-@media (max-width: 768px) {
-    .post-container {
-        width: 90%;
+@media (min-width:300px) and (max-width: 768px) {
+    /* Adjust icon size slightly smaller than large screens */
+    .header-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Adjust font size for tablet */
+    .header-left a {
+        font-size: 18px;
+    }
+    
+    .post-image {
+        max-height: 200px;
+    }
+
+    .flex-container {
+        flex-direction: column; 
         gap: 10px;
     }
-
+    .left-column, .right-column {
+        min-height: 32px;
+    }
     .form-row {
-        flex-direction: column; /* Stack the label on top of the input */
-        align-items: flex-start;
-    }
-
-    .form-label, textarea, input[type="file"] {
-        width: 100%; /* Full width on small screens */
-    }
-
-    .submit-btn {
-        width: 100%; /* Submit button is full width on mobile */
-        text-align: center;
+        flex-direction: column;
+        align-items: center;
     }
 }
