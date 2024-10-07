@@ -207,3 +207,151 @@ button:hover {
         gap: 10px;
     }
 }
+
+/* Container for the Add Post page */
+.post-container {
+    background-color: #ddd;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Form row to ensure labels and inputs are on the same line */
+.form-row {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start; /* Aligns label and input to the start */
+    align-items: flex-start; /* Align label to the top of the input */
+    gap: 10px; /* Add some gap between label and input */
+}
+
+/* Align the labels to the top right */
+.form-label {
+    text-align: right;
+    font-weight: bold;
+    width: 100px; /* Fixed width for label to avoid overlap */
+    align-self: flex-start; /* Align the label to the top */
+}
+
+textarea {
+    resize: none;  /* Prevent resizing */
+    width: calc(100% - 110px);   /* Adjust the width to align with label */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px; /* Add space below textarea */
+}
+
+input[type="file"] {
+    background-color: transparent;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none; 
+    cursor: pointer; /* Make it look like a button */
+    width: calc(100% - 110px); /* Align input with textarea */
+}
+
+/* Center the submit button */
+.submit-btn {
+    padding: 10px 30px;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    margin: 0 auto;  /* Center the button */
+}
+
+.submit-btn:hover {
+    background-color: #005999;
+}
+
+/* Make sure footer is pinned to the bottom of the page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 60px;
+    padding: 16px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.header-right a img:hover {
+    opacity: 0.8;  /* Slightly reduce opacity on hover */
+    cursor: pointer;  /* Show the pointer cursor when hovering over the icon */
+}
+
+#create-post-btn { /* ID Selector*/
+    background-color: #0077cc;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Pseudo-class */
+.header-left > a:hover {
+    background-color: #0077cc;
+    color: white;
+}
+
+/* Descendant Selector: a tag inside header-left */
+.header-left a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Child Selector */
+.header-left > a {
+    margin-right: 10px;
+}
+
+/* Adjacent Sibling Selector */
+.form-row + .form-row {
+    margin-top: 10px; /* Add space between form rows */
+}
+
+/* General Sibling Selector */
+label ~ textarea {
+    border-color: blue; /* Change textarea border if label is a sibling */
+}
+
+/* Flexbox for responsive layout */
+@media (max-width: 768px) {
+    .post-container {
+        width: 90%;
+        gap: 10px;
+    }
+
+    .form-row {
+        flex-direction: column; /* Stack the label on top of the input */
+        align-items: flex-start;
+    }
+
+    .form-label, textarea, input[type="file"] {
+        width: 100%; /* Full width on small screens */
+    }
+
+    .submit-btn {
+        width: 100%; /* Submit button is full width on mobile */
+        text-align: center;
+    }
+}

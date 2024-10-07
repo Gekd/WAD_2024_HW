@@ -2,19 +2,43 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HW_1</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Add Post</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <header>
-        <div class="header-left">
-            <a href="index.html">Home</a>
-        </div>
-        <div class="header-right">
-            <img src="images/person-circle.svg" alt="icon" class="header-icon">
-        </div>
-    </header>
+
+<header>
+    <div class="header-left">
+        <a href="index.html">Home</a>
+        <p>|</p>
+        <a href="addPost.html" class="selected">Add Post</a>
+    </div>
+    <div class="header-right">
+        <a href="login.html">
+            <img src="images/person-circle.svg" alt="User Icon" class="header-icon">
+        </a>
+    </div>
+</header>
+
+<div class="flex-container">
+    <div class="post-container">
+        <form action="index.html" method="get">
+            <div class="form-row">
+                <label for="post-body" class="form-label">Post body</label>
+                <textarea id="post-body" cols="20" rows="4" placeholder="textarea"></textarea>
+            </div>
+            <div class="form-row">
+                <label for="file-upload" class="form-label">Select file</label>
+                <input type="file" id="file-upload">
+            </div>
+            <button id="create-post-btn" class="submit-btn">Create Post</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2024</p>
+</footer>
+
 </body>
 </html>
-
