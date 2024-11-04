@@ -74,3 +74,22 @@ function renderPosts(posts) {
         postsColumn.appendChild(postElement);
     });
 }
+function showUserInfo(userImage, userName, userEmail) {
+    const userInfo = document.createElement('div');
+    userInfo.className = 'user-info';
+    userInfo.textContent = `${userName} - ${userEmail}`;
+    userInfo.style.position = 'absolute';
+    userInfo.style.backgroundColor = '#f1f1f1';
+    userInfo.style.padding = '5px';
+    userInfo.style.borderRadius = '5px';
+
+    userImage.parentElement.appendChild(userInfo);
+    userImage.userInfoElement = userInfo;
+}
+
+function hideUserInfo(userImage) {
+    if (userImage.userInfoElement) {
+        userImage.userInfoElement.remove();
+        delete userImage.userInfoElement;
+    }
+}
