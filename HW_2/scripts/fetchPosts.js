@@ -13,6 +13,7 @@ async function fetchPosts() {
         const response = await fetch(onlineJSONPath);// change this to fetch from the local JSON file for testing
         const data = await response.json();
         renderPosts(data.user_feed);
+        showUserInfo(data.user_name, data.user_email)
     } catch (error) {
         console.error("Error fetching posts:", error);
     }
@@ -74,22 +75,11 @@ function renderPosts(posts) {
         postsColumn.appendChild(postElement);
     });
 }
-function showUserInfo(userImage, userName, userEmail) {
-    const userInfo = document.createElement('div');
-    userInfo.className = 'user-info';
-    userInfo.textContent = `${userName} - ${userEmail}`;
-    userInfo.style.position = 'absolute';
-    userInfo.style.backgroundColor = '#f1f1f1';
-    userInfo.style.padding = '5px';
-    userInfo.style.borderRadius = '5px';
+function showUserInfo(userName, userEmail) {
+    const userInfo = document.querySelector('.dropdown-content');
+    const nameField = userInfo.querySelector('a:nth-child(1)');
+    const emailField = userInfo.querySelector('a:nth-child(2)');
 
-    userImage.parentElement.appendChild(userInfo);
-    userImage.userInfoElement = userInfo;
-}
-
-function hideUserInfo(userImage) {
-    if (userImage.userInfoElement) {
-        userImage.userInfoElement.remove();
-        delete userImage.userInfoElement;
-    }
+    nameField.textContent = userName;
+    emailField.textContent = userEmail;
 }
