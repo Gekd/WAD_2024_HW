@@ -1,25 +1,30 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <header>
-
-    <div class="navbar">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/signup">Signup</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView/>
-  <footer>
-    <p>© 2021</p>
-  </footer>
+  <div class="app-container">
+    <Header />
+    <main class="main-content">
+      <RouterView />
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <style scoped>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -52,7 +57,8 @@ footer {
   background-color: grey;
   border-radius: 16px;
   place-content: center;
-  margin-top: 16px;}
+  margin-top: 16px;
+}
 
 @media (min-width: 1024px) {
   nav {

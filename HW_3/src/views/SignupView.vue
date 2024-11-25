@@ -12,9 +12,17 @@
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" id="password" v-model="password" required>
+                <input type="password" id="password" v-model="password" required @input="validatePassword">
             </div>
-            <button type="submit">Sign Up</button>
+            <div v-if="password && !isPasswordValid" class="error-messages">
+                <p>The password is not valid:</p>
+                <ul>
+                    <li v-for="(error, index) in passwordErrors" :key="index">
+                        {{ error }}
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" :disabled="!isPasswordValid || !password">Sign Up</button>
         </form>
     </div>
 </template>
@@ -25,13 +33,54 @@ export default {
         return {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            passwordErrors: [],
+            isPasswordValid: false
         };
+    },
+    computed: {
+        isFormValid() {
+            return this.username && this.email && this.isPasswordValid;
+        }
     },
     methods: {
         submitForm() {
-            // Handle form submission
-            console.log('Form submitted:', this.username, this.email, this.password);
+            if (this.isFormValid) {
+                console.log('Form submitted:', this.username, this.email, this.password);
+                this.username = '';
+                this.email = '';
+                this.password = '';
+                this.passwordErrors = [];
+                this.isPasswordValid = false;
+                this.$router.push('/');// added redirecting to home page if the form is valid because it seemed nice
+            }
+        },
+        validatePassword() {
+            this.passwordErrors = [];
+            
+            if (this.password.length < 8 || this.password.length >= 15) {
+                this.passwordErrors.push("Password should be at least 8 characters");
+            }
+            if (this.password.length >= 15) {
+                this.passwordErrors.push("Password should be at less than 15 characters");
+            }
+            if (!/[A-Z]/.test(this.password)) {
+                this.passwordErrors.push("Include at least one uppercase alphabet character");
+            }
+            if ((this.password.match(/[a-z]/g) || []).length < 2) {
+                this.passwordErrors.push("Include at least two lowercase alphabet characters");
+            }
+            if (!/\d/.test(this.password)) {
+                this.passwordErrors.push("Include at least one numeric value");
+            }
+            if (!/^[A-Z]/.test(this.password)) {
+                this.passwordErrors.push("Start with an uppercase alphabet");
+            }
+            if (!this.password.includes('_')) {
+                this.passwordErrors.push("Include the character '_'");
+            }
+
+            this.isPasswordValid = this.passwordErrors.length === 0;
         }
     }
 };
@@ -77,5 +126,19 @@ export default {
 
 .signup-view button:hover {
     background-color: #0056b3;
+}
+
+.error-messages {
+    color: red;
+    margin-top: 10px;
+}
+
+.error-messages ul {
+    padding-left: 20px;
+}
+
+.signup-view button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 </style>
