@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </nav>
     </div>
   </header>
-  
+
   <RouterView/>
   <footer>
     <p>© 2021</p>
