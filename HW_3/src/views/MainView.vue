@@ -74,6 +74,9 @@ export default {
   cursor: pointer;
   border: none;
 }
+.reset-button:hover{
+  background-color: #0056b3;
+}
 
 footer {
   font-size: 16px;

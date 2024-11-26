@@ -2,7 +2,7 @@
   <div class="post-item">
     <div class="post-header">
       <img src="../assets/images/person-circle.svg" alt="User Image" class="user-image" />
-      <span class="post-date">{{ post.date }}</span>
+      <span class="post-date">{{ formatDate(post.date) }}</span>
     </div>
 
     <div v-if="post.post_image" class="post-image">
@@ -16,7 +16,7 @@
     <div class="post-footer">
       <button @click="incrementLike" class="like-button"> <img src="../assets/images/thumbs-up.svg" />  </button>
 
-      <span class="like-count">Likes: {{ post.like_count || 0 }}</span>
+      <span class="like-count"> {{ post.like_count || 0 }} Likes</span>
 
     </div>
   </div>
@@ -32,6 +32,12 @@ export default {
   methods: {
     incrementLike() {
       this.$store.commit("INCREMENT_LIKES", this.index); // Increment likes for this post
+    },
+    formatDate(dateString) {
+      // Convert the date string to a Date object
+      const date = new Date(dateString);
+      // Format the date
+      return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(date);
     },
   },
 };
