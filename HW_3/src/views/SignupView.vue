@@ -91,8 +91,8 @@ export default {
     max-width: 400px;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid var(--color-background-soft);
+    border-radius: 16px;
 }
 
 .signup-view h1 {
@@ -117,7 +117,7 @@ export default {
 .signup-view button {
     width: 100%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: var(--vt-c-blue);
     color: white;
     border: none;
     border-radius: 4px;

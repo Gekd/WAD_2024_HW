@@ -69,7 +69,7 @@ export default {
   font-size: 16px;
   padding: 16px 16px;
   border-radius: 16px;
-  background-color: rgb(67, 167, 201);
+  background-color: var(--vt-c-blue);
   color: white;
   cursor: pointer;
   border: none;

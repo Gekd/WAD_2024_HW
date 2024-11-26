@@ -14,7 +14,7 @@
     </div>
 
     <div class="post-footer">
-      <button @click="incrementLike" class="like-button"> <img src="../assets/images/thumbs-up.svg" />  </button>
+      <button @click="incrementLike" class="like-button"> <img src="../assets/images/like.svg" />  </button>
 
       <span class="like-count"> {{ post.like_count || 0 }} Likes</span>
 
@@ -89,7 +89,7 @@ export default {
 }
 
 .like-button {
-  color: white;
+  background-color: transparent;
   padding: 8px;
   border: none;
   cursor: pointer;
@@ -100,7 +100,7 @@ export default {
 }
 
 .like-button:hover {
-  background-color: #0056b3;
+  filter: brightness(0) saturate(100%) invert(35%) sepia(43%)  hue-rotate(200deg) brightness(89%) contrast(85%);
 }
 
 .like-count {
