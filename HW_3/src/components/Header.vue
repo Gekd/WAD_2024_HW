@@ -23,7 +23,7 @@ nav {
   font-size: 16px;
   text-align: center;
   height: 48px;
-  background-color: grey;
+  background-color: var(--color-background-soft);
   border-radius: 16px;
   place-content: center;
   margin-bottom: 16px;

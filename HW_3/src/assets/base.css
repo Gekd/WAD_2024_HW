@@ -1,7 +1,7 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
+  --vt-c-white-soft: #aeaeb2;
   --vt-c-white-mute: #f2f2f2;
 
   --vt-c-black: #181818;
@@ -61,7 +61,7 @@
 }
 
 body {
-  min-height: 100vh;
+  height: auto;
   color: var(--color-text);
   background: var(--color-background);
   transition:

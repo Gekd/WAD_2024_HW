@@ -1,7 +1,7 @@
 <template>
   <div class="post-item">
     <div class="post-header">
-      <img :src="post.user_image || 'default-user-image.jpg'" alt="User Image" class="user-image" />
+      <img src="../assets/images/person-circle.svg" alt="User Image" class="user-image" />
       <span class="post-date">{{ post.date }}</span>
     </div>
 
@@ -14,10 +14,10 @@
     </div>
 
     <div class="post-footer">
-      <!-- Display Like Count -->
+      <button @click="incrementLike" class="like-button"> <img src="../assets/images/thumbs-up.svg" />  </button>
+
       <span class="like-count">Likes: {{ post.like_count || 0 }}</span>
-      <!-- Like Button -->
-      <button @click="incrementLike" class="like-button">Like</button>
+
     </div>
   </div>
 </template>
@@ -39,15 +39,17 @@ export default {
 
 <style scoped>
 .post-item {
-  border: 1px solid #ddd;
+  background-color: var(--color-background-soft);
   padding: 16px;
   margin: 8px;
   width: 300px;
+  border-radius: 16px;
 }
 
 .post-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 12px;
 }
 
@@ -66,6 +68,8 @@ export default {
 .post-image img {
   width: 100%;
   height: auto;
+  border-radius: 16px;
+
 }
 
 .post-text {
@@ -79,11 +83,14 @@ export default {
 }
 
 .like-button {
-  background-color: #007bff;
   color: white;
   padding: 8px;
   border: none;
   cursor: pointer;
+}
+.like-button img {
+  width: 20px;
+  height: 20px;
 }
 
 .like-button:hover {
@@ -94,4 +101,10 @@ export default {
   font-size: 14px;
   color: #333;
 }
+
+@media (min-width: 900px) {
+    .post-item {
+        width: 600px;
+    }
+  }
 </style>

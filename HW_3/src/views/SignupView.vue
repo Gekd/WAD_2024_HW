@@ -89,7 +89,7 @@ export default {
 <style scoped>
 .signup-view {
     max-width: 400px;
-    margin: 0 auto;
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -140,5 +140,11 @@ export default {
 .signup-view button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
+}
+
+@media screen and (min-width: 1000px) {
+    .signup-view {
+        margin: 30% auto;
+    }
 }
 </style>

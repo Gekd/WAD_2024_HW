@@ -12,7 +12,7 @@
       />
     </div>
     <div class="reset-container">
-      <button @click="resetLikes">Reset Likes</button>
+      <button @click="resetLikes" class="reset-button">Reset Likes</button>
     </div>
   </div>
 </template>
@@ -53,15 +53,26 @@ export default {
 
 .posts-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 16px;
-  padding: 16px;
+  margin-bottom: 16px;
 }
 
 .reset-container {
   text-align: center;
-  margin: 16px 0;
+  margin-bottom: 16px;
+}
+
+.reset-button {
+  font-size: 16px;
+  padding: 16px 16px;
+  border-radius: 16px;
+  background-color: rgb(67, 167, 201);
+  color: white;
+  cursor: pointer;
+  border: none;
 }
 
 footer {
