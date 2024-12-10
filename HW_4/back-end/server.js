@@ -60,7 +60,7 @@ app.get('/api/posts/:id', async (req, res) => {
     }
 });
 
-// Uuendades peab olema nii title kui ka body 
+// Uuendades peab olema nii title kui ka body
 app.put('/api/posts/:id', async (req, res) => {
     try {
         console.log("Put request received");
