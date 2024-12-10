@@ -8,7 +8,7 @@ const pool = new Pool({
     host: "localhost",
     port: 5432
 });
-module.exports = pool;
+
 
 const execute = async (query) => {
     try {
@@ -21,14 +21,25 @@ const execute = async (query) => {
     }
 };
 
-const createTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "urllink" varchar(200));';
+const createPostTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "urllink" varchar(200));';
 
-execute(createTblQuery).then((res) => {
+const createUserTblQuery = 'CREATE TABLE IF NOT EXISTS "users" ("id" uuid PRIMARY KEY, "username" VARCHAR(200) NOT NULL, "password" VARCHAR(200) NOT NULL);';
+
+
+execute(createPostTblQuery).then((res) => {
     if (res) {
-        console.log("Table created successfully");
+        console.log("Posts table created successfully");
     } else {
-        console.log("Table creation failed");
+        console.log("Posts table creation failed");
     }
 });
 
-module.exports = { pool, execute, createTblQuery };
+execute(createUserTblQuery).then((res) => {
+    if (res) {
+        console.log("Users table created successfully");
+    } else {
+        console.log("Users table creation failed");
+    }
+});
+
+module.exports = { pool, execute, createPostTblQuery, createUserTblQuery };
