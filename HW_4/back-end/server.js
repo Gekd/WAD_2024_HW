@@ -24,7 +24,6 @@ app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
 
-// Töötab
 app.post('/api/posts', async (req, res) => {
     try {
         console.log("Post request received");
