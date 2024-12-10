@@ -77,7 +77,6 @@ app.put('/api/posts/:id', async (req, res) => {
     }
 });
 
-// töötab
 app.delete('/api/posts/:id', async (req, res) => {
     try {
         console.log("Delete request received");
