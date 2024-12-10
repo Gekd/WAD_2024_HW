@@ -34,6 +34,7 @@ app.post('/api/posts', async (req, res) => {
         res.json(newpost);
     } catch (error) {
         console.error(error.message);
+        res.status(400).send(error.message);
     }
 });
 
@@ -45,6 +46,7 @@ app.get('/api/posts', async (req, res) => {
         res.json(allposts.rows);
     } catch (error) {
         console.error(error.message);
+        res.status(400).send(error.message);
     }
 });
 
@@ -57,6 +59,7 @@ app.get('/api/posts/:id', async (req, res) => {
         res.json(post.rows[0]);
     } catch (error) {
         console.error(error.message);
+        res.status(400).send(error.message);
     }
 });
 
@@ -73,6 +76,8 @@ app.put('/api/posts/:id', async (req, res) => {
 
     } catch (error) {
         console.error(error.message);
+        res.status(400).send(error.message);
+
     }
 });
 
@@ -84,6 +89,7 @@ app.delete('/api/posts/:id', async (req, res) => {
         res.json(deletepost);
     } catch (error) {
         console.error(error.message);
+        res.status(400).send(error.message);
     }
 });
 

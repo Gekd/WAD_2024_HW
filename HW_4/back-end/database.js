@@ -1,12 +1,18 @@
 const Pool = require('pg').Pool;
 require('dotenv').config();
 
+/*
 const pool = new Pool({
-    user: "postgres",
+    user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: "hw4-db",
+    database: process.env.DB_NAME,
     host: "localhost",
     port: 5432
+});
+*/
+
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
 });
 
 
@@ -42,4 +48,4 @@ execute(createUserTblQuery).then((res) => {
     }
 });
 
-module.exports = { pool, execute, createPostTblQuery, createUserTblQuery };
+module.exports = { pool };
