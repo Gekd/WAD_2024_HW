@@ -63,7 +63,7 @@ app.get('/api/posts/:id', async (req, res) => {
     try {
         const result = await client.query(query, values);
         if (result.rows.length === 0) {
-            return res.status(404).send('Post not found');
+            return res.status(404).json({ error: 'Post not found' });
         }
         res.status(200).json(result.rows[0]);
     } catch (error) {
@@ -84,7 +84,7 @@ app.put('/api/posts/:id', async (req, res) => {
     try {
         const result = await client.query(query, values);
         if (result.rows.length === 0) {
-            return res.status(404).send('Post not found');
+            return res.status(404).json({ error: 'Post not found' });
         }
         res.status(200).json(result.rows[0]);
     } catch (error) {
@@ -103,13 +103,13 @@ app.delete('/api/posts/:id', async (req, res) => {
 
     try {
         const result = await client.query(query, values);
-        if (result.rowCount === 0) {
-            return res.status(404).send('Post not found');
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Post not found' });
         }
         res.status(200).send('Post deleted successfully');
     } catch (error) {
         console.error('Error deleting post:', error.message);
-        res.status(500).send('Server error');
+        res.status(500).json({ error: 'Server error' });
     } finally {
         client.release();
     }
@@ -127,7 +127,10 @@ app.post('/auth/signup', async (req, res) => {
         const token = await generateJWT(authUser.rows[0].id);
         res.status(201).cookie('jwt', token, { maxAge: 6000000, httpOnly: true }).json({ user_id: authUser.rows[0].id }).send;
 
-    } catch (error) { res.status(400).json({ error: error.message }); }
+    } catch (error) {
+        console.error('Error during signup:', error.message);
+        res.status(400).json({ error: error.message });
+    }
 });
 
 app.post('/auth/login', async (req, res) => {
@@ -143,6 +146,7 @@ app.post('/auth/login', async (req, res) => {
 
         const validPassword = await bcrypt.compare(req.body.password, result.rows[0].password);
         if (!validPassword) {
+            console.log('Password is incorrect');
             return res.status(401).json({ error: 'Password is incorrect' });
         }
 
@@ -164,7 +168,7 @@ app.get('/auth/authenticate', async (req, res) => {
         if (token) {
             await jwt.verify(token, secret, (err) => {
                 if (err) {
-                    console.log(err.message);
+                    console.log('Token verify failed: ' + err.message);
                     res.send({ "authenticated": authenticated });
                 } else {
                     authenticated = true;
@@ -172,7 +176,7 @@ app.get('/auth/authenticate', async (req, res) => {
                 }
             });
         } else {
-            console.log('author is not authinticated');
+            console.log('No token found');
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
@@ -184,5 +188,5 @@ app.get('/auth/authenticate', async (req, res) => {
 
 app.get('/auth/logout', async (req, res) => {
     console.log("Delete jwt request received");
-    res.status(202).clearCookie('jwt').send('cookie cleared');
+    res.status(202).clearCookie('jwt').json({ cleared: true });
 });
