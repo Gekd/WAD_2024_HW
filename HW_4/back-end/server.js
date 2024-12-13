@@ -24,6 +24,7 @@ app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });
 
+
 app.post('/api/posts', async (req, res) => {
     const client = await pool.connect();
     const query = "INSERT INTO posttable (title, body, urllink) VALUES ($1, $2, $3) RETURNING *;";
@@ -40,6 +41,7 @@ app.post('/api/posts', async (req, res) => {
     }
 });
 
+
 app.get('/api/posts', async (req, res) => {
     const client = await pool.connect();
     const query = "SELECT * FROM posttable;";
@@ -54,6 +56,7 @@ app.get('/api/posts', async (req, res) => {
         client.release();
     }
 });
+
 
 app.get('/api/posts/:id', async (req, res) => {
     const client = await pool.connect();
@@ -75,7 +78,6 @@ app.get('/api/posts/:id', async (req, res) => {
 });
 
 
-// Uuendades peab olema nii title kui ka body
 app.put('/api/posts/:id', async (req, res) => {
     const client = await pool.connect();
     const query = "UPDATE posttable SET title = $2, body = $3, urllink = $4 WHERE id = $1 RETURNING *;";
