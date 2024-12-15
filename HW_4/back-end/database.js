@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 // If you do not want to use Docker Compose, use the following code:
-/*
+
 const pool = new Pool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -11,9 +11,9 @@ const pool = new Pool({
     host: "localhost",
     port: 5432
 });
-*/
 
 
+/* 
 // If you are using Docker Compose, use the following code:
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -65,3 +65,4 @@ waitForDb()
     });
 
 module.exports = pool;
+*/
