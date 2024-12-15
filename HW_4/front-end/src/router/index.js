@@ -1,27 +1,39 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
-import ContactView from '../views/ContactView.vue';
-import LoginView from '../views/LoginView.vue';
-
-const isAuthenticated = () => localStorage.getItem('auth') === 'true';
-
-const routes = [
-  { path: '/login', name: 'Login', component: LoginView },
-  {
-    path: '/',
-    name: 'Home',
-    component: HomeView,
-    beforeEnter: (to, from, next) => {
-      if (isAuthenticated()) next();
-      else next('/login');
-    }
-  },
-  { path: '/contact', name: 'Contact', component: ContactView },
-];
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
+import AddPostView from '@/views/AddPostView.vue'
+import ContactView from '@/views/ContactView.vue'
+import PostView from '@/views/PostView.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: HomeView,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/add-post',
+      name: 'addpost',
+      component: AddPostView,
+    },
+    {
+      path: '/',
+      name: 'Contact',
+      component: ContactView,
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: PostView,
+    },
+  ],
+})
 
-export default router;
+export default router

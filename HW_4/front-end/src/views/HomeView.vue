@@ -1,27 +1,26 @@
 <template>
-  <div>
-    <!-- Header -->
-    <h1>Home Page</h1>
-    <p>Welcome to the Posts Dashboard</p>
-
-    <!-- Buttons -->
+  <div  class="home-container">
     <div>
-      <button @click="logout">Logout</button>
-      <button @click="goToAddPost">Add Post</button>
-      <button @click="deleteAllPosts">Delete All</button>
-    </div>
+      <!-- Buttons -->
+      <div>
+        <button @click="logout">Logout</button>
+        <button @click="goToAddPost">Add Post</button>
+        <button @click="deleteAllPosts">Delete All</button>
+      </div>
 
-    <!-- List of Posts -->
-    <div v-if="posts.length">
-      <h2>All Posts</h2>
-      <ul>
-        <li v-for="post in posts" :key="post.id">
-          <a @click="viewPost(post.id)">{{ post.title }}</a>
-        </li>
-      </ul>
+      <!-- List of Posts -->
+      <div v-if="posts.length">
+        <h2>All Posts</h2>
+        <ul>
+          <li v-for="post in posts" :key="post.id">
+            <a @click="viewPost(post.id)">{{ post.title }}</a>
+          </li>
+        </ul>
+      </div>
+      <p v-else>No posts available.</p>
     </div>
-    <p v-else>No posts available.</p>
   </div>
+
 </template>
 
 <script>
@@ -69,6 +68,14 @@ export default {
 </script>
 
 <style scoped>
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
 h1 {
   color: #333;
 }
