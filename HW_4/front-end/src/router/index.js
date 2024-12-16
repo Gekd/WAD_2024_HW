@@ -4,6 +4,8 @@ import LoginView from '@/views/LoginView.vue'
 import AddPostView from '@/views/AddPostView.vue'
 import ContactView from '@/views/ContactView.vue'
 import PostView from '@/views/PostView.vue'
+import SignupView from '../views/SignupView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,17 +16,12 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
-    },
-    {
       path: '/add-post',
       name: 'addpost',
       component: AddPostView,
     },
     {
-      path: '/',
+      path: '/contact',
       name: 'Contact',
       component: ContactView,
     },
@@ -32,6 +29,16 @@ const router = createRouter({
       path: '/post',
       name: 'post',
       component: PostView,
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: LoginView,
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: SignupView
     },
   ],
 })
