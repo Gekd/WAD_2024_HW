@@ -40,6 +40,11 @@ const router = createRouter({
       name: 'Signup',
       component: SignupView
     },
+    {
+      path: '/post/:id',
+      name: 'post',
+      component: PostView
+    },
   ],
 })
 

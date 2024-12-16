@@ -12,6 +12,7 @@
       </div>
       <button type="submit">Login</button>
     </form>
+    <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
     return {
       email: '',
       password: '',
+      errorMessage: '',
     };
   },
   methods: {
@@ -32,18 +34,29 @@ export default {
         const response = await axios.post('http://localhost:3000/auth/login', {
           email: this.email,
           password: this.password,
-        });
+        }, { withCredentials: true });
+
         console.log('User logged in:', response.data);
-        // Optionally redirect after logging in
-        this.$router.push('/');
+        
+        if (response.data && response.data.user_id) {
+          // Successful login
+          localStorage.setItem('auth', response.data.user_id);
+          this.$router.push('/').catch(err => {
+            console.error('Navigation failed:', err);
+            window.location.href = '/';
+          });
+        } else {
+          throw new Error('Invalid response from server');
+        }
       } catch (error) {
         console.error('Error logging in:', error);
-        alert('Login failed. Please try again.');
+        this.errorMessage = error.response?.data?.error || 'Login failed. Please try again.';
       }
     },
   },
 };
 </script>
+
 
 <style scoped>
 .login {
@@ -71,5 +84,9 @@ button {
 }
 button:hover {
   background-color: #45a049;
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 </style>

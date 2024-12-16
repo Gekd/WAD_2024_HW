@@ -3,7 +3,7 @@ require('dotenv').config();
 
 
 // If you do not want to use Docker Compose, use the following code:
-
+/* 
 const pool = new Pool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -12,8 +12,8 @@ const pool = new Pool({
     port: 5432
 });
 
+*/
 
-/* 
 // If you are using Docker Compose, use the following code:
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
@@ -48,7 +48,7 @@ const execute = async (query) => {
     }
 };
 
-const createPostTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "urllink" varchar(200));';
+const createPostTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "urllink" varchar(200), "last_modified" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP );';
 
 const createUserTblQuery = 'CREATE TABLE IF NOT EXISTS "users" ("id" UUID PRIMARY KEY DEFAULT gen_random_uuid(), "email" VARCHAR(200) NOT NULL, "password" VARCHAR(200) NOT NULL);';
 
@@ -65,4 +65,3 @@ waitForDb()
     });
 
 module.exports = pool;
-*/
