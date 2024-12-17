@@ -140,11 +140,11 @@ textarea {
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  background-color: #4CAF50;
+  background-color: #4f9deb;
   color: white;
   transition: background-color 0.3s ease;
 }
 .add-button:hover {
-  background-color: #45a049;
+  background-color: #357ac9;
 }
 </style>
