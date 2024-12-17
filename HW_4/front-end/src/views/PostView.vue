@@ -205,11 +205,11 @@ textarea {
   transition: background-color 0.3s ease;
 }
 .update-button {
-  background-color: #4CAF50;
+  background-color: #4f9deb;
   color: white;
 }
 .update-button:hover {
-  background-color: #45a049;
+  background-color: #357ac9;
 }
 .delete-button {
   background-color: #f44336;
