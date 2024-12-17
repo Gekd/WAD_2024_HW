@@ -9,7 +9,7 @@ const port = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin:['http://localhost:3000', 'http://localhost:5173'], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -27,8 +27,8 @@ app.listen(port, () => {
 
 app.post('/api/posts', async (req, res) => {
     const client = await pool.connect();
-    const query = "INSERT INTO posttable (title, body, urllink) VALUES ($1, $2, $3) RETURNING *;";
-    const values = [req.body.title, req.body.body, req.body.urllink];
+    const query = "INSERT INTO posttable (title, body, last_modified) VALUES ($1, $2, CURRENT_TIMESTAMP) RETURNING *;";
+    const values = [req.body.title, req.body.body];
 
     try {
         const result = await client.query(query, values);
@@ -44,8 +44,7 @@ app.post('/api/posts', async (req, res) => {
 
 app.get('/api/posts', async (req, res) => {
     const client = await pool.connect();
-    const query = "SELECT * FROM posttable;";
-
+    const query = "SELECT *, TO_CHAR(last_modified, 'YYYY-MM-DD HH24:MI:SS') as formatted_date FROM posttable ORDER BY last_modified DESC;";
     try {
         const result = await client.query(query);
         res.status(200).json(result.rows);
@@ -60,7 +59,7 @@ app.get('/api/posts', async (req, res) => {
 
 app.get('/api/posts/:id', async (req, res) => {
     const client = await pool.connect();
-    const query = "SELECT * FROM posttable WHERE id = $1;";
+    const query = "SELECT *, TO_CHAR(last_modified, 'YYYY-MM-DD HH24:MI:SS') as formatted_date FROM posttable WHERE id = $1;";
     const values = [req.params.id];
 
     try {
@@ -80,8 +79,8 @@ app.get('/api/posts/:id', async (req, res) => {
 
 app.put('/api/posts/:id', async (req, res) => {
     const client = await pool.connect();
-    const query = "UPDATE posttable SET title = $2, body = $3, urllink = $4 WHERE id = $1 RETURNING *;";
-    const values = [req.params.id, req.body.title, req.body.body, req.body.urllink];
+    const query = "UPDATE posttable SET title = $2, body = $3, last_modified = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *, TO_CHAR(last_modified, 'YYYY-MM-DD HH24:MI:SS') as formatted_date;";;
+    const values = [req.params.id, req.body.title, req.body.body];
 
     try {
         const result = await client.query(query, values);
@@ -116,7 +115,19 @@ app.delete('/api/posts/:id', async (req, res) => {
         client.release();
     }
 });
-
+app.delete('/api/posts', async (req, res) => {
+    const client = await pool.connect();
+    const query = "DELETE FROM posttable";  
+    try {
+        await client.query(query);
+        res.status(200).json({ message: 'All posts deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting all posts:', error.message);
+        res.status(500).json({ error: 'Failed to delete all posts' });
+    } finally {
+        client.release();
+    }
+});
 
 app.post('/auth/signup', async (req, res) => {
     try {
