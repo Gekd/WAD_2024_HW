@@ -137,13 +137,13 @@ input {
 }
 
 input:focus {
-  border-color: #4CAF50;
-  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+  border-color: #4f9deb;
+  box-shadow: 0 0 5px rgba(0, 100, 180, 0.5);
 }
 
 /* Login Button */
 .login-button {
-  background-color: #4CAF50;
+  background-color: #4f9deb;
   color: white;
   padding: 10px;
   border: none;
@@ -154,7 +154,7 @@ input:focus {
 }
 
 .login-button:hover {
-  background-color: #45a049;
+  background-color: #357ac9;
 }
 
 /* Error Message */
@@ -172,7 +172,7 @@ input:focus {
 }
 
 .signup-link {
-  color: #4CAF50;
+  color: #4f9deb;
   cursor: pointer;
   text-decoration: none;
 }
