@@ -67,6 +67,7 @@ export default {
         if (response.data && response.data.user_id) {
           console.log("User signed up successfully:", response.data);
           // Redirect to home or login page after successful signup
+          localStorage.setItem("auth", response.data.user_id);
           this.$router.push("/");
         } else {
           throw new Error("Unexpected response format");
@@ -97,8 +98,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f1f1f1;
+  min-height: calc(100vh - 190px);
+  border-radius: 24px;
 }
 
 /* Signup Form Container */

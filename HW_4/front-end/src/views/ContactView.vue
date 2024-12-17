@@ -4,8 +4,8 @@
       <h1>Contact Us</h1>
       <p>If you have any questions, feel free to reach us at:</p>
       <ul>
-        <li><strong>Email:</strong> contact@example.com</li>
-        <li><strong>Phone:</strong> +372 123 456 7890</li>
+        <li><strong>Email:</strong> <a href="mailto:contact@example.com">contact@example.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+3721234567890">+372 123 456 7890</a></li>      
       </ul>
     </div >
   </div>
@@ -22,10 +22,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start; 
-  min-height: 100%;
+  min-height: calc(100vh - 190px);
   padding: 60px 20px; 
   background-color: #f0f0f0;
   box-sizing: border-box;  
+  border-radius: 24px;
 }
 
 .contact-box {

@@ -101,8 +101,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   background-color: #f1f1f1;
+  min-height: calc(100vh - 190px);
+  border-radius: 24px;
 }
 
 /* Login Form Container */

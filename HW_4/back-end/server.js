@@ -27,8 +27,8 @@ app.listen(port, () => {
 
 app.post('/api/posts', async (req, res) => {
     const client = await pool.connect();
-    const query = "INSERT INTO posttable (title, body, urllink, last_modified) VALUES ($1, $2, $3, CURRENT_TIMESTAMP) RETURNING *;";
-    const values = [req.body.title, req.body.body, req.body.urllink];
+    const query = "INSERT INTO posttable (title, body, last_modified) VALUES ($1, $2, CURRENT_TIMESTAMP) RETURNING *;";
+    const values = [req.body.title, req.body.body];
 
     try {
         const result = await client.query(query, values);
@@ -79,8 +79,8 @@ app.get('/api/posts/:id', async (req, res) => {
 
 app.put('/api/posts/:id', async (req, res) => {
     const client = await pool.connect();
-    const query = "UPDATE posttable SET title = $2, body = $3, urllink = $4, last_modified = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *, TO_CHAR(last_modified, 'YYYY-MM-DD HH24:MI:SS') as formatted_date;";;
-    const values = [req.params.id, req.body.title, req.body.body, req.body.urllink];
+    const query = "UPDATE posttable SET title = $2, body = $3, last_modified = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *, TO_CHAR(last_modified, 'YYYY-MM-DD HH24:MI:SS') as formatted_date;";;
+    const values = [req.params.id, req.body.title, req.body.body];
 
     try {
         const result = await client.query(query, values);

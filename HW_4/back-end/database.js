@@ -48,7 +48,7 @@ const execute = async (query) => {
     }
 };
 
-const createPostTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "urllink" varchar(200), "last_modified" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP );';
+const createPostTblQuery = 'CREATE TABLE IF NOT EXISTS "posttable" ("id" SERIAL PRIMARY KEY, "title" VARCHAR(200) NOT NULL, "body" VARCHAR(200) NOT NULL, "last_modified" TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP );';
 
 const createUserTblQuery = 'CREATE TABLE IF NOT EXISTS "users" ("id" UUID PRIMARY KEY DEFAULT gen_random_uuid(), "email" VARCHAR(200) NOT NULL, "password" VARCHAR(200) NOT NULL);';
 

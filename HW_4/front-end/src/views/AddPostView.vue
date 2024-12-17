@@ -21,14 +21,6 @@
             required
           ></textarea>
         </div>
-        <div class="form-group">
-          <label for="urllink">URL Link:</label>
-          <input
-            id="urllink"
-            v-model="post.urllink"
-            type="url"
-          >
-        </div>
         <div class="button-container">
           <button type="submit" class="add-button">Add Post</button>
         </div>
@@ -46,8 +38,7 @@ export default {
     return {
       post: {
         title: '',
-        body: '',
-        urllink: ''
+        body: ''
       }
     };
   },

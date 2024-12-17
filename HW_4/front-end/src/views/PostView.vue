@@ -23,15 +23,6 @@
             :disabled="!isEditing"
           ></textarea>
         </div>
-        <div class="form-group">
-          <label for="urllink">URL Link:</label>
-          <input
-            id="urllink"
-            v-model="post.urllink"
-            type="url"
-            :disabled="!isEditing"
-          >
-        </div>
         <div class="button-container">
           <button v-if="!isEditing" type="button" class="update-button" @click="startEditing">Edit</button>
           <button v-else type="submit" class="update-button">Save</button>
@@ -53,7 +44,6 @@ export default {
       post: {
         title: '',
         body: '',
-        urllink: ''
       },
       isEditing: false,
     };
