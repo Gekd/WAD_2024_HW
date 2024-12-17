@@ -76,7 +76,7 @@ export default {
 
     formatDate(dateString) {
       if (!dateString) return 'No date';
-      
+
       let date;
       if (typeof dateString === 'string') {
         // Parse the ISO 8601 date string
@@ -119,7 +119,7 @@ export default {
         await axios.delete('http://localhost:3000/api/posts', {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
+
         this.posts = [];
         alert('All posts have been deleted successfully.');
       } catch (error) {
@@ -188,7 +188,7 @@ export default {
 .posts-container {
   width: 100%;
   max-width: 600px;
-  
+
 }
 
 .no-posts {
@@ -206,7 +206,7 @@ export default {
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .post-card:hover {
@@ -241,9 +241,9 @@ export default {
   font-size: 1rem;
   color: #4c566a;
   line-height: 1.5;
-  background-color: #f8f9fa; 
+  background-color: #f8f9fa;
   border-radius: 12px;
-  
+  padding: 12px;
 }
 
 .bottom-buttons {
